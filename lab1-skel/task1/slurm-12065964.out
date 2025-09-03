@@ -1,0 +1,13 @@
+Unloading the cpe module is insufficient to restore the system defaults.
+Please run 'source
+/opt/cray/pe/cpe/24.11/restore_lmod_system_defaults.[csh|sh]'. 
+ 
+Sourcing the above script is not necessary if swapping the cpe module with a
+different version. 
+Threads:  1, Avg: 12.094 ms, StdDev: 0.165 ms
+Threads:  2, Avg: 12.651 ms, StdDev: 0.906 ms
+Threads:  4, Avg: 86.977 ms, StdDev: 3.069 ms
+Threads:  8, Avg: 254.511 ms, StdDev: 31.100 ms
+Threads: 16, Avg: 432.010 ms, StdDev: 23.442 ms
+Threads: 32, Avg: 823.746 ms, StdDev: 24.832 ms
+Threads: 64, Avg: 1657.572 ms, StdDev: 51.714 ms

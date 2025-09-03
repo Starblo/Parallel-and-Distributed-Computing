@@ -1,0 +1,10 @@
+test: capacity=3 threads=10 iters=500maxActive=3, violation=false, ticurrentThread=1846ms
+OK!
+simple test
+[holdThread] acquired semaphore, holding...
+[waitThread] trying to acquire semaphore...
+[main] waitThread state: WAITING
+[holdThread] released semaphore
+[waitThread] acquired semaphore!
+[main] test finished.
+All tests finished.

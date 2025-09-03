@@ -1,0 +1,60 @@
+Run 1 (B) :
+B: delay_ns=40425
+Current value of sharedIntB: 1000000
+Run 1 (C) :
+C: delay_ns=35556
+Current value of sharedIntC: 1000000
+Run 2 (B) :
+B: delay_ns=24225
+Current value of sharedIntB: 1000000
+Run 2 (C) :
+C: delay_ns=35335
+Current value of sharedIntC: 1000000
+Run 3 (B) :
+B: delay_ns=84076
+Current value of sharedIntB: 1000000
+Run 3 (C) :
+C: delay_ns=29886
+Current value of sharedIntC: 1000000
+Run 4 (B) :
+B: delay_ns=3690008
+Current value of sharedIntB: 1000000
+Run 4 (C) :
+C: delay_ns=54000
+Current value of sharedIntC: 1000000
+Run 5 (B) :
+B: delay_ns=24145
+Current value of sharedIntB: 1000000
+Run 5 (C) :
+C: delay_ns=35005
+Current value of sharedIntC: 1000000
+Run 6 (B) :
+B: delay_ns=17012
+Current value of sharedIntB: 1000000
+Run 6 (C) :
+C: delay_ns=31468
+Current value of sharedIntC: 1000000
+Run 7 (B) :
+B: delay_ns=22752
+Current value of sharedIntB: 1000000
+Run 7 (C) :
+C: delay_ns=355810
+Current value of sharedIntC: 1000000
+Run 8 (B) :
+B: delay_ns=22733
+Current value of sharedIntB: 1000000
+Run 8 (C) :
+C: delay_ns=32640
+Current value of sharedIntC: 1000000
+Run 9 (B) :
+B: delay_ns=16841
+Current value of sharedIntB: 1000000
+Run 9 (C) :
+C: delay_ns=91800
+Current value of sharedIntC: 1000000
+Run 10 (B) :
+B: delay_ns=218515
+Current value of sharedIntB: 1000000
+Run 10 (C) :
+C: delay_ns=27411
+Current value of sharedIntC: 1000000
