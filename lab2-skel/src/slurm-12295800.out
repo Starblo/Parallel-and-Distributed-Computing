@@ -1,0 +1,44 @@
+Sorting algorithm:  ParallelStream
+Thread count:       1
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ParallelStream 1 120650317.00 8707505.39
+Measurements done
+Sorting algorithm:  ParallelStream
+Thread count:       2
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ParallelStream 2 65788536.00 10819570.47
+Measurements done
+Sorting algorithm:  ParallelStream
+Thread count:       4
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ParallelStream 4 55022680.00 10003440.20
+Measurements done
+Sorting algorithm:  ParallelStream
+Thread count:       8
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ParallelStream 8 62403650.00 15983711.79
+Measurements done

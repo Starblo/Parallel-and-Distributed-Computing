@@ -13,6 +13,8 @@
  *      ForkJoinPool myPool = new ForkJoinPool(threads);
  *      myPool.submit(() -> "my parallel stream method / function");
  */
+import java.util.Arrays;
+import java.util.concurrent.ForkJoinPool;
 
 public class ParallelStreamSort implements Sorter {
         public final int threads;
@@ -22,7 +24,21 @@ public class ParallelStreamSort implements Sorter {
         }
 
         public void sort(int[] arr) {
-                // TODO: sort arr.
+                ForkJoinPool pool = new ForkJoinPool(threads);
+                try {
+                        int[] tempt = pool.submit(() ->
+                                Arrays.stream(arr)
+                                .parallel()
+                                .sorted()
+                                .toArray()
+                        ).get();
+                        System.arraycopy(tempt, 0, arr, 0, arr.length);
+                }  catch (Exception e) {
+                        e.printStackTrace();
+                }
+                 finally {
+                        pool.shutdown();
+                }
         }
 
         public int getThreads() {

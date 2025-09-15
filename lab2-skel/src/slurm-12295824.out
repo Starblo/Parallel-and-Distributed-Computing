@@ -1,0 +1,44 @@
+Sorting algorithm:  Sequential
+Thread count:       1
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+Sequential 1 133498781.00 6522534.00
+Measurements done
+Sorting algorithm:  Sequential
+Thread count:       1
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+Sequential 1 136722435.00 5487506.02
+Measurements done
+Sorting algorithm:  Sequential
+Thread count:       1
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+Sequential 1 130824784.00 6063527.56
+Measurements done
+Sorting algorithm:  Sequential
+Thread count:       1
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+Sequential 1 136499888.00 5649662.03
+Measurements done
