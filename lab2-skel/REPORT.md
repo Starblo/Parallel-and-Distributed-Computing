@@ -93,12 +93,13 @@ Out parameters:
 ![speedup plot](data/speedup_perf.png)
 
 #### Are the performance gains/drops between different numbers of threads what you expected?
-
-
+Yes. Speed improves from 2→8–16 threads, then flattens as thread-management and memory overheads dominate.
 
 #### What implementation ran the fastest/slowest? Was this in accordance with your expectations?
-
+Fastest is `ParallelStream`; slowest is `Sequential`. ExecutorService and ForkJoin are close, which is expected since they share the same merge and depth cap and pay extra scheduling overhead compared to `ParallelStream`.
 
 #### What method was the easiest to implement?
+`ParallelStream`, no manual recursion, merge code, or tuning; just a one-line parallel stream.
 
 #### What method do you prefer?
+`ParallelStream`, because it is easy and performs best.
