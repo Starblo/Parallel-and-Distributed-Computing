@@ -9,7 +9,6 @@ import java.util.concurrent.ForkJoinWorkerThread;
 public class ForkJoinPoolSort implements Sorter {
         public final int threads;
         private final ForkJoinPool pool;
-        private static final int SEQ_CUTOFF = 65536;
 
         public ForkJoinPoolSort(int threads) {
                 this.threads = Math.max(1, threads);
@@ -33,12 +32,19 @@ public class ForkJoinPoolSort implements Sorter {
         @Override
         public void sort(int[] arr) {
                 if (arr == null || arr.length <= 1) return;
-                pool.invoke(new Worker(arr, 0, arr.length - 1));
+                int d = floorLog2(threads);
+                pool.invoke(new Worker(arr, 0, arr.length - 1, d));
         }
 
         @Override
         public int getThreads() {
                 return threads;
+        }
+
+        private int floorLog2(int n) {
+                int lg = 0;
+                while ((n >>= 1) > 0) ++lg;
+                return lg;
         }
 
         private void mergesort(int[] arr, int left, int right)
@@ -85,29 +91,28 @@ public class ForkJoinPoolSort implements Sorter {
                 private final int[] arr;
                 private final int left;
                 private final int right;
+                private final int depth;
 
-                Worker(int[] arr, int left, int right) {
+                Worker(int[] arr, int left, int right, int depth) {
                         this.arr = arr;
                         this.left = left;
                         this.right = right;
+                        this.depth = depth;
                 }
 
                 @Override
                 protected void compute() {
-                        int len = right - left + 1;
-                        if (len <= 1) return;
+                        if (right <= left) return;
 
-                        if (len <= SEQ_CUTOFF) {
+                        if (depth == 0) {
                                 mergesort(arr, left, right);
                                 return;
                         }
 
                         int mid = left + (right - left) / 2;
-                        Worker leftTask = new Worker(arr, left, mid);
-                        Worker rightTask = new Worker(arr, mid + 1, right);
-                        // fork both and wait
-                        invokeAll(leftTask, rightTask);
-                        // merge after both half are sorted
+                        Worker a = new Worker(arr, left, mid, depth - 1);
+                        Worker b = new Worker(arr, mid + 1, right, depth - 1);
+                        invokeAll(a, b);
                         merge(arr, left, mid, right);
                 }
         }

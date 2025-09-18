@@ -1,7 +1,3 @@
-/**
- * Sort using Java's ExecutorService.
- */
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -11,7 +7,6 @@ import java.util.concurrent.ThreadFactory;
 public class ExecutorServiceSort implements Sorter {
         public final int threads;
         private final ExecutorService pool;
-        private static final int SEQ_CUTOFF = 65536;
 
         public ExecutorServiceSort(int threads) {
                 this.threads = Math.max(1, threads);
@@ -35,7 +30,6 @@ public class ExecutorServiceSort implements Sorter {
                 try {
                         parallelMergeSort(arr, 0, arr.length - 1, maxDepth);
                 } catch (InterruptedException | ExecutionException e) {
-                        // Fallback: sequential mergesort
                         mergesort(arr, 0, arr.length - 1);
                 }
         }
@@ -53,7 +47,7 @@ public class ExecutorServiceSort implements Sorter {
         private void parallelMergeSort(int[] arr, int left, int right, int depth)
                         throws InterruptedException, ExecutionException {
                 if (right <= left) return;
-                if ((right - left + 1) <= SEQ_CUTOFF || depth == 0) {
+                if (depth == 0) {
                         mergesort(arr, left, right);
                         return;
                 }

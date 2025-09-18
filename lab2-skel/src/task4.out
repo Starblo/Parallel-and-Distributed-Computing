@@ -1,4 +1,14 @@
-Sorting algorithm:  ExecutorService
+Unloading the cpe module is insufficient to restore the system defaults.
+Please run 'source
+/opt/cray/pe/cpe/24.11/restore_lmod_system_defaults.[csh|sh]'. 
+ 
+Sourcing the above script is not necessary if swapping the cpe module with a
+different version. 
+
+The following have been reloaded with a version change:
+  1) gcc-native/12.3 => gcc-native/13.2
+
+Sorting algorithm:  ForkJoinPool
 Thread count:       2
 Array size:         1000000
 Warm-up rounds:     10
@@ -7,9 +17,9 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 2 67913234.00 277572.54
+ForkJoinPool 2 66270209.00 497031.76
 Measurements done
-Sorting algorithm:  ExecutorService
+Sorting algorithm:  ForkJoinPool
 Thread count:       4
 Array size:         1000000
 Warm-up rounds:     10
@@ -18,9 +28,9 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 4 42095792.00 1205307.01
+ForkJoinPool 4 45684658.00 3986254.43
 Measurements done
-Sorting algorithm:  ExecutorService
+Sorting algorithm:  ForkJoinPool
 Thread count:       8
 Array size:         1000000
 Warm-up rounds:     10
@@ -29,9 +39,9 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 8 46606165.00 2592054.63
+ForkJoinPool 8 52226244.00 4353463.43
 Measurements done
-Sorting algorithm:  ExecutorService
+Sorting algorithm:  ForkJoinPool
 Thread count:       16
 Array size:         1000000
 Warm-up rounds:     10
@@ -40,9 +50,9 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 16 45398042.00 1617582.38
+ForkJoinPool 16 50566464.00 3071855.36
 Measurements done
-Sorting algorithm:  ExecutorService
+Sorting algorithm:  ForkJoinPool
 Thread count:       32
 Array size:         1000000
 Warm-up rounds:     10
@@ -51,9 +61,9 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 32 45122409.00 1534869.87
+ForkJoinPool 32 52095716.00 2504218.64
 Measurements done
-Sorting algorithm:  ExecutorService
+Sorting algorithm:  ForkJoinPool
 Thread count:       48
 Array size:         1000000
 Warm-up rounds:     10
@@ -62,9 +72,9 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 48 46737498.00 1638983.92
+ForkJoinPool 48 50679004.00 3063299.96
 Measurements done
-Sorting algorithm:  ExecutorService
+Sorting algorithm:  ForkJoinPool
 Thread count:       64
 Array size:         1000000
 Warm-up rounds:     10
@@ -73,9 +83,9 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 64 46146663.00 1576537.50
+ForkJoinPool 64 50416853.00 2180126.59
 Measurements done
-Sorting algorithm:  ExecutorService
+Sorting algorithm:  ForkJoinPool
 Thread count:       96
 Array size:         1000000
 Warm-up rounds:     10
@@ -84,5 +94,5 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 96 45918459.00 1660624.38
+ForkJoinPool 96 50493259.00 2102917.71
 Measurements done

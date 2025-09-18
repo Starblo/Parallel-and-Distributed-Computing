@@ -2,10 +2,10 @@ import re
 import matplotlib.pyplot as plt
 
 FILES = [
-    ("task1.out",       "Sequential"),
-    ("task3_65536.out", "ExecutorService"),
-    ("task4_65536.out", "ForkJoin"),
-    ("task5.out",       "Parallel"),
+    ("task1.out", "Sequential"),
+    ("task3.out", "ExecutorService"),
+    ("task4.out", "ForkJoin"),
+    ("task5.out", "Parallel"),
 ]
 
 OUT_DIR = "../data"

@@ -51,11 +51,7 @@ Source files:
 
 - `ExecutorServiceSort.java`
 
-We implement a fixed thread pool with daemon workers to ensure the JVM exits cleanly after measurements, stop parallel recursion when either the depth limit $d=\lfloor\log_2 Thread\rfloor$ is reached or the subarray size $\le$ `SEQ_CUTOFF`. This keeps the merge logic identical to the sequential version and prevents task explosion.
-
-**Why `SEQ_CUTOFF = 65536`:** with $N=1{,}000{,}000$,
-- $S_4 = N/2^4 = 62{,}500 \approx 65{,}536$ → for $T=16$ we still use the deepest layer.
-- $S_5 = N/2^5 = 31{,}250 < 65{,}536$ → for $T\ge 32$ we stop one level earlier.
+We implement a fixed thread pool with daemon workers to ensure the JVM exits cleanly after measurements, stop parallel recursion when the depth limit $d=\lfloor\log_2 Thread\rfloor$ is reached. This keeps the merge logic identical to the sequential version and prevents task explosion.
 
 ## Task 4: ForkJoinPoolSort
 
@@ -63,7 +59,7 @@ Source files:
 
 - `ForkJoinPoolSort.java`
 
-We implement a parallel merge sort with a `ForkJoinPool` per subrange. Each task splits at the midpoint, runs both halves in parallel via `invokeAll`, and merges in the parent thread after the joins; small subproblems (size $\le C$) fall back to the sequential mergesort to avoid overhead.
+We implement a parallel merge sort with a `ForkJoinPool` per subrange. Each task splits at the midpoint, runs both halves in parallel via `invokeAll`, and merges in the parent thread after the joins; stop parallel recursion when the depth limit $d=\lfloor\log_2 Thread\rfloor$ is reached.
 
 ## Task 5: ParallelStreamSort
 
@@ -95,3 +91,14 @@ Out parameters:
 
 ![time plot](data/time_perf.png)
 ![speedup plot](data/speedup_perf.png)
+
+#### Are the performance gains/drops between different numbers of threads what you expected?
+
+
+
+#### What implementation ran the fastest/slowest? Was this in accordance with your expectations?
+
+
+#### What method was the easiest to implement?
+
+#### What method do you prefer?
