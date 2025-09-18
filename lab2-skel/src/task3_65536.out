@@ -1,0 +1,88 @@
+Sorting algorithm:  ExecutorService
+Thread count:       2
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ExecutorService 2 67913234.00 277572.54
+Measurements done
+Sorting algorithm:  ExecutorService
+Thread count:       4
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ExecutorService 4 42095792.00 1205307.01
+Measurements done
+Sorting algorithm:  ExecutorService
+Thread count:       8
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ExecutorService 8 46606165.00 2592054.63
+Measurements done
+Sorting algorithm:  ExecutorService
+Thread count:       16
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ExecutorService 16 45398042.00 1617582.38
+Measurements done
+Sorting algorithm:  ExecutorService
+Thread count:       32
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ExecutorService 32 45122409.00 1534869.87
+Measurements done
+Sorting algorithm:  ExecutorService
+Thread count:       48
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ExecutorService 48 46737498.00 1638983.92
+Measurements done
+Sorting algorithm:  ExecutorService
+Thread count:       64
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ExecutorService 64 46146663.00 1576537.50
+Measurements done
+Sorting algorithm:  ExecutorService
+Thread count:       96
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ExecutorService 96 45918459.00 1660624.38
+Measurements done
