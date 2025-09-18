@@ -1,6 +1,6 @@
 # Lab 2 - Java Parallel Programming and Sorting Algorithms
-- Group X
-- Lastname, Firstname and Lastname, Firstname
+- Group x&zx
+- Li, Xin and Hong, Zixiang
 
 ## Task 1: Sequential Sort
 We chose to implement MergeSort/QuickSort ...
@@ -11,13 +11,39 @@ Source files:
 
 ## Task 2: Amdahl's Law
 
-Our Amdahl's law ...
+Classical Amdahl's law:
 
-Here is a plot of our version of Amdahl's law ...
+$$
+S(N)=\frac{1}{(1-p)+\frac{p}{N}}.
+$$
+
+Here is a plot of our version of Amdahl's law 
 
 ![amdahl's law plot](data/amdahl.png)
 
-We see that ...
+We see that when $threads<15$, the speedup increases sharply; beyond that point, adding more threads brings negligible returns.
+
+- As the thread count $N$ grows, recursion produces smaller subproblems.
+- As thread increases, task scheduling, synchronization and cache effects cost more
+
+
+### Our model: Amdahl + overhead
+
+We add a linear overhead term to classical Amdahl’s law:
+$$
+S(N)=\frac{1}{(1-p)+\frac{p}{N}+\delta(N)}
+$$
+
+$$
+\delta(N)=a+bN\quad (N>1),\qquad \delta(1)=0.
+$$
+
+Classical Amdahl assumes perfect division of work and negligible overhead, which overestimates speedup.  
+By adding $\delta(N)$, we capture $N$-dependent costs (scheduling, synchronization, cache effects), so the curves visualized realistically as $N$ grows.
+
+![amdahl + overhead plot](data/plot_overhead1.png)
+![amdahl + overhead plot](data/plot_overhead2.png)
+
 
 ## Task 3: ExecutorServiceSort
 
@@ -25,7 +51,11 @@ Source files:
 
 - `ExecutorServiceSort.java`
 
-We decided to ...
+We implement a fixed thread pool with daemon workers to ensure the JVM exits cleanly after measurements, stop parallel recursion when either the depth limit $d=\lfloor\log_2 Thread\rfloor$ is reached or the subarray size $\le$ `SEQ_CUTOFF`. This keeps the merge logic identical to the sequential version and prevents task explosion.
+
+**Why `SEQ_CUTOFF = 65536`:** with $N=1{,}000{,}000$,
+- $S_4 = N/2^4 = 62{,}500 \approx 65{,}536$ → for $T=16$ we still use the deepest layer.
+- $S_5 = N/2^5 = 31{,}250 < 65{,}536$ → for $T\ge 32$ we stop one level earlier.
 
 ## Task 4: ForkJoinPoolSort
 
