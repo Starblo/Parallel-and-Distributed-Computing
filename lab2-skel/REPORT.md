@@ -1,9 +1,9 @@
 # Lab 2 - Java Parallel Programming and Sorting Algorithms
-- Group X
-- Lastname, Firstname and Lastname, Firstname
+- Group 10
+- Xin Li and Zixiang Hong
 
 ## Task 1: Sequential Sort
-We chose to implement MergeSort/QuickSort ...
+We chose to implement MergeSort
 
 Source files:
 
@@ -39,9 +39,22 @@ We decided to ...
 
 Source files:
 
-- `ForkJoinPoolSort.java`
+- `ParallelStreamSort.java`
 
-We decided to ...
+We first use 
+```
+ForkJoinPool pool = new ForkJoinPool(threads);
+```
+to create a thread pool.
+
+
+Then, we use `Arrays.stream` to have an stream object of the int array. We use `.parallel()` to have a parallel stream of the int array. We use `.sorted()` to sort the stream and use `.toArray()` to convert the result to array.
+
+We use 
+```
+System.arraycopy(tempt, 0, arr, 0, arr.length);
+```
+to copy the tempt result to `arr`
 
 ## Task 6: Performance measurements with PDC
 
