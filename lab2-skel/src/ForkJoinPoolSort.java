@@ -9,12 +9,10 @@ import java.util.concurrent.ForkJoinWorkerThread;
 public class ForkJoinPoolSort implements Sorter {
         public final int threads;
         private final ForkJoinPool pool;
-        // Keep a modest cutoff to avoid tiny tasks; tune if needed
-        private static final int SEQ_CUTOFF = 1 << 15; // 32768 by default
+        private static final int SEQ_CUTOFF = 65536;
 
         public ForkJoinPoolSort(int threads) {
                 this.threads = Math.max(1, threads);
-                // Use a daemon thread factory so JVM can exit after measurements
                 this.pool = new ForkJoinPool(
                         this.threads,
                         new ForkJoinPool.ForkJoinWorkerThreadFactory() {
@@ -35,7 +33,6 @@ public class ForkJoinPoolSort implements Sorter {
         @Override
         public void sort(int[] arr) {
                 if (arr == null || arr.length <= 1) return;
-                // Invoke a single task for the whole array
                 pool.invoke(new Worker(arr, 0, arr.length - 1));
         }
 
@@ -44,7 +41,6 @@ public class ForkJoinPoolSort implements Sorter {
                 return threads;
         }
 
-        // === SequentialSort-compatible sequential mergesort (base case and merge style) ===
         private void mergesort(int[] arr, int left, int right)
         {
                 if (right - left <= 1)
@@ -63,7 +59,6 @@ public class ForkJoinPoolSort implements Sorter {
                 merge(arr, left, mid, right);
         }
 
-        // merge() restored to match SequentialSort's variable names
         private void merge(int[] arr, int left, int mid, int right)
         {
                 int len = right - left + 1;
@@ -103,7 +98,6 @@ public class ForkJoinPoolSort implements Sorter {
                         if (len <= 1) return;
 
                         if (len <= SEQ_CUTOFF) {
-                                // run the original sequential mergesort to keep behavior identical
                                 mergesort(arr, left, right);
                                 return;
                         }
@@ -113,7 +107,7 @@ public class ForkJoinPoolSort implements Sorter {
                         Worker rightTask = new Worker(arr, mid + 1, right);
                         // fork both and wait
                         invokeAll(leftTask, rightTask);
-                        // After both halves are sorted, merge in current thread
+                        // merge after both half are sorted
                         merge(arr, left, mid, right);
                 }
         }

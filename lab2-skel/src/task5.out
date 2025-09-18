@@ -1,0 +1,88 @@
+Sorting algorithm:  ParallelStream
+Thread count:       2
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ParallelStream 2 49197017.00 9979411.83
+Measurements done
+Sorting algorithm:  ParallelStream
+Thread count:       4
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ParallelStream 4 32490058.00 3944640.64
+Measurements done
+Sorting algorithm:  ParallelStream
+Thread count:       8
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ParallelStream 8 29203674.00 2509217.04
+Measurements done
+Sorting algorithm:  ParallelStream
+Thread count:       16
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ParallelStream 16 33243686.00 4486548.47
+Measurements done
+Sorting algorithm:  ParallelStream
+Thread count:       32
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ParallelStream 32 33161593.00 4597984.78
+Measurements done
+Sorting algorithm:  ParallelStream
+Thread count:       48
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ParallelStream 48 34755168.00 4166358.49
+Measurements done
+Sorting algorithm:  ParallelStream
+Thread count:       64
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ParallelStream 64 31267484.00 3115273.19
+Measurements done
+Sorting algorithm:  ParallelStream
+Thread count:       96
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ParallelStream 96 38775511.00 2057794.59
+Measurements done

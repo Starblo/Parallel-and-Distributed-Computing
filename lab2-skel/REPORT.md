@@ -63,7 +63,7 @@ Source files:
 
 - `ForkJoinPoolSort.java`
 
-We decided to ...
+We implement a parallel merge sort with a `ForkJoinPool` per subrange. Each task splits at the midpoint, runs both halves in parallel via `invokeAll`, and merges in the parent thread after the joins; small subproblems (size $\le C$) fall back to the sequential mergesort to avoid overhead.
 
 ## Task 5: ParallelStreamSort
 
@@ -87,9 +87,11 @@ System.arraycopy(tempt, 0, arr, 0, arr.length);
 to copy the tempt result to `arr`
 
 ## Task 6: Performance measurements with PDC
+Out parameters:
+- `SIZE=1000000`
+- `WARMUP=10`
+- `MEASURE=1000`
+- `SEED=42`
 
-We decided to sort 10,000,000 integers ...
-
-![pdc plot](data/pdc.png)
-
-We see that ...
+![time plot](data/time_perf.png)
+![speedup plot](data/speedup_perf.png)

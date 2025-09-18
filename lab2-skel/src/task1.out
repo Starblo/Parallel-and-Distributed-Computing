@@ -1,0 +1,11 @@
+Sorting algorithm:  Sequential
+Thread count:       1
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+Sequential 1 129822347.00 18909395.03
+Measurements done

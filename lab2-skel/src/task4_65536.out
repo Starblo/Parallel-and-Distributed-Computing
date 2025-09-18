@@ -1,15 +1,4 @@
 Sorting algorithm:  ForkJoinPool
-Thread count:       1
-Array size:         1000000
-Warm-up rounds:     10
-Measurement rounds: 1000
-RNG seed:           42
-Validating sorter
-Validation passed
-Starting Measurements
-ForkJoinPool 1 160469142.00 7081862.85
-Measurements done
-Sorting algorithm:  ForkJoinPool
 Thread count:       2
 Array size:         1000000
 Warm-up rounds:     10
@@ -18,7 +7,7 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 2 82303768.00 3862072.53
+ForkJoinPool 2 82832098.00 2816664.61
 Measurements done
 Sorting algorithm:  ForkJoinPool
 Thread count:       4
@@ -29,7 +18,7 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 4 55031565.00 2749889.86
+ForkJoinPool 4 49129931.00 3321260.10
 Measurements done
 Sorting algorithm:  ForkJoinPool
 Thread count:       8
@@ -40,7 +29,7 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 8 57777848.00 3267325.61
+ForkJoinPool 8 62080271.00 5696376.15
 Measurements done
 Sorting algorithm:  ForkJoinPool
 Thread count:       16
@@ -51,7 +40,7 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 16 58242744.00 3811592.70
+ForkJoinPool 16 59442995.00 3334137.79
 Measurements done
 Sorting algorithm:  ForkJoinPool
 Thread count:       32
@@ -62,7 +51,18 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 32 62077225.00 4019908.72
+ForkJoinPool 32 51458252.00 4759933.79
+Measurements done
+Sorting algorithm:  ForkJoinPool
+Thread count:       48
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ForkJoinPool 48 60909569.00 2360572.05
 Measurements done
 Sorting algorithm:  ForkJoinPool
 Thread count:       64
@@ -73,5 +73,16 @@ RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 64 61203408.00 3416527.65
+ForkJoinPool 64 55403502.00 4088802.31
+Measurements done
+Sorting algorithm:  ForkJoinPool
+Thread count:       96
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ForkJoinPool 96 56628317.00 6341528.07
 Measurements done
