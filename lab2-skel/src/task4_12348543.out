@@ -1,0 +1,77 @@
+Sorting algorithm:  ForkJoinPool
+Thread count:       1
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ForkJoinPool 1 160469142.00 7081862.85
+Measurements done
+Sorting algorithm:  ForkJoinPool
+Thread count:       2
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ForkJoinPool 2 82303768.00 3862072.53
+Measurements done
+Sorting algorithm:  ForkJoinPool
+Thread count:       4
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ForkJoinPool 4 55031565.00 2749889.86
+Measurements done
+Sorting algorithm:  ForkJoinPool
+Thread count:       8
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ForkJoinPool 8 57777848.00 3267325.61
+Measurements done
+Sorting algorithm:  ForkJoinPool
+Thread count:       16
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ForkJoinPool 16 58242744.00 3811592.70
+Measurements done
+Sorting algorithm:  ForkJoinPool
+Thread count:       32
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ForkJoinPool 32 62077225.00 4019908.72
+Measurements done
+Sorting algorithm:  ForkJoinPool
+Thread count:       64
+Array size:         1000000
+Warm-up rounds:     10
+Measurement rounds: 1000
+RNG seed:           42
+Validating sorter
+Validation passed
+Starting Measurements
+ForkJoinPool 64 61203408.00 3416527.65
+Measurements done
