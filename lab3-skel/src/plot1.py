@@ -2,7 +2,7 @@ import re
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-filename = "task1.2.out"
+filename = "task1.1.out"
 hdr = re.compile(r"^=== T=(\d+)\s+S=\w+\s+D=(\w+)\s+V=\d+\s+MIX=([\d:]+)\s+O=\d+\s+W=\d+\s+M=\d+\s+===$")
 meas = re.compile(r"^Measurement time:\s+(\d+)$")
 
@@ -42,7 +42,7 @@ for key in sorted(data.keys()):
 
 plt.xlabel("Threads")
 plt.ylabel("Execution time (ms)")
-plt.title(f"Average execution time 1.2")
+plt.title(f"Average execution time 1.1")
 plt.grid(True, linestyle="--", alpha=0.4)
 plt.legend()
 out = f"{Path(filename).stem}_summary.png"
