@@ -1,7 +1,79 @@
 Note: Main.java uses unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
-=== T=1 S=Default D=Uniform V=1000 MIX=1:1:8 O=1000000 W=3 M=5 ===
-Exception in thread "main" java.lang.NullPointerException: Cannot read the array length because "a" is null
-	at java.base/java.util.Arrays.sort(Arrays.java:1233)
-	at Log.validate(Log.java:12)
-	at Main.main(Main.java:55)
+=== T=1 S=Locked D=Uniform V=1000 MIX=1:1:8 O=100000 W=3 M=5 ===
+Warmup time: 121693336
+Warmup discrepancy: 0
+Warmup time: 98663956
+Warmup discrepancy: 0
+Warmup time: 96566518
+Warmup discrepancy: 0
+Measurement time: 102324147
+Measurement discrepancy: 0
+Measurement time: 95596162
+Measurement discrepancy: 0
+Measurement time: 94266563
+Measurement discrepancy: 0
+Measurement time: 100286012
+Measurement discrepancy: 0
+Measurement time: 100212912
+Measurement discrepancy: 0
+
+=== T=2 S=Locked D=Uniform V=1000 MIX=1:1:8 O=100000 W=3 M=5 ===
+Warmup time: 586429304
+Warmup discrepancy: 0
+Warmup time: 461661953
+Warmup discrepancy: 0
+Warmup time: 429013339
+Warmup discrepancy: 0
+Measurement time: 447240054
+Measurement discrepancy: 0
+Measurement time: 447312632
+Measurement discrepancy: 0
+Measurement time: 442475863
+Measurement discrepancy: 0
+Measurement time: 435016316
+Measurement discrepancy: 0
+Measurement time: 479956837
+Measurement discrepancy: 0
+
+=== T=4 S=Locked D=Uniform V=1000 MIX=1:1:8 O=100000 W=3 M=5 ===
+Warmup time: 986762699
+Warmup discrepancy: 0
+Warmup time: 848709588
+Warmup discrepancy: 2
+Warmup time: 861350229
+Warmup discrepancy: 0
+Measurement time: 853532300
+Measurement discrepancy: 0
+Measurement time: 831137247
+Measurement discrepancy: 0
+Measurement time: 879593957
+Measurement discrepancy: 0
+Measurement time: 829850841
+Measurement discrepancy: 0
+Measurement time: 855237613
+Measurement discrepancy: 0
+
+=== T=8 S=Locked D=Uniform V=1000 MIX=1:1:8 O=100000 W=3 M=5 ===
+Warmup time: 2061614062
+Warmup discrepancy: 0
+Warmup time: 1929307937
+Warmup discrepancy: 0
+Warmup time: 1845202250
+Warmup discrepancy: 0
+Measurement time: 1824454815
+Measurement discrepancy: 0
+Measurement time: 1801630501
+Measurement discrepancy: 1
+Measurement time: 1763872331
+Measurement discrepancy: 1
+Measurement time: 1866627312
+Measurement discrepancy: 0
+Measurement time: 1870394398
+Measurement discrepancy: 1
+
+=== T=16 S=Locked D=Uniform V=1000 MIX=1:1:8 O=100000 W=3 M=5 ===
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: arraycopy: last source index 800016 out of bounds for object array[800000]
+	at java.base/java.lang.System.arraycopy(Native Method)
+	at Task3.getLog(Task3.java:329)
+	at Main.main(Main.java:56)

@@ -51,6 +51,7 @@ public class Main {
                 }
 
                 for (int i = 0; i < warmups; ++i) {
+                        set.reset();
                         long time = Experiment.run(threads, opsPerThread, set, opsDistribution, valuesDistribution);
                         int discrepancy = Log.validate(set.getLog());
                         System.err.println("Warmup time: " + time);
@@ -58,6 +59,7 @@ public class Main {
                 }
 
                 for (int i = 0; i < measurements; ++i) {
+                        set.reset();
                         long time = Experiment.run(threads, opsPerThread, set, opsDistribution, valuesDistribution);
                         int discrepancy = Log.validate(set.getLog());
                         System.err.println("Measurement time: " + time);

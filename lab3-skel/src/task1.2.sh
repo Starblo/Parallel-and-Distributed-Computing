@@ -40,7 +40,7 @@ set -e
 
 SET_VERSION=Default      # <S>
 MAX_VALUE=1000         # <V>
-OPS_PER_THREAD=1000000   # <O>
+OPS_PER_THREAD=100000   # <O>
 WARMUP_ROUNDS=3          # <W>
 MEASURE_ROUNDS=5         # <M>
 

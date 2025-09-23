@@ -9,6 +9,10 @@ public class Log {
     public static int validate(Log.Entry[] log) {
         // Implement this.
         // Should return the number of discrepancies in the log.
+        if (log == null)
+        {
+            return -1;
+        }
         Arrays.sort(log, (e1, e2) -> Long.compare(e1.timestamp, e2.timestamp));
         HashSet<Integer> set = new HashSet<>();
         int discrepancy = 0;
