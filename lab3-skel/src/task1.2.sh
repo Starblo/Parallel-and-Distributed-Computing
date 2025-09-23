@@ -21,7 +21,7 @@
 
 #SBATCH --nodes=1
 
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=64
 
 ml PDC java
 set -e
@@ -39,7 +39,7 @@ set -e
 # -----------------------------------------
 
 SET_VERSION=Default      # <S>
-MAX_VALUE=100000         # <V>
+MAX_VALUE=1000         # <V>
 OPS_PER_THREAD=1000000   # <O>
 WARMUP_ROUNDS=3          # <W>
 MEASURE_ROUNDS=5         # <M>
