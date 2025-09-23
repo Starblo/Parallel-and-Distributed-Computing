@@ -31,17 +31,17 @@ For write-heavy cases we consistently see A.2 > B.2. For read-heavy cases, on PD
 
 ## 2.1 Identify linearization points
 
-For `find()`, the linearization point is at the last call to `succ = curr.next[level].get(marked);`
+For `find()`, the linearization point is the last call to `curr = pred.next[level].getReference();`
 
-For `add()`, if the operation is unsuccessful, the linearization point is the same as the successful `find()` (see above). If the add operation is successful, the linearization point is at line 55.
+For `add()`, if the operation is unsuccessful, the linearization point is the same as the successful `find()` (see above). If the add operation is successful, the linearization point is at:
 
 ```
- if(!pred.next[bottomLevel].compareAndSet(succ,newNode, false,false))
+pred.next[bottomLevel].compareAndSet(succ, newNode, false, false)
  ```
 
- The linearization point of the unsuccessful `remove()` is the `find()` method call on line 77. It's the same as the unsuccesssful `find()` (see above). If remove is successful, the linearization point is at line 96 `nodeToRemove.next[bottomLevel].compareAndSet(succ, succ, false, true)`. If the `compareAndSet()` call failed, but the next reference is marked, then another thread must have conrrently removed it. The linearization point of this unsuccessful `remove()` is the linearization of the `remove()` method by the thread that succssfully marked the next field. This linearization point must occur during the `remove()` call because the `find()` call found the node unmarked before it found it marked.
+ The linearization point of an unsuccessful `remove()` is the `find()` method call. If remove is successful, the linearization point is at line 96 `nodeToRemove.next[bottomLevel].compareAndSet(succ, succ, false, true)`. If the `compareAndSet()` call failed, but the next reference is marked, then another thread must have conrrently removed it. The linearization point of this unsuccessful `remove()` is the linearization of the `remove()` method by the thread that succssfully marked the next field. This linearization point must occur during the `remove()` call because the `find()` call found the node unmarked before it found it marked.
 
- The linearization point of `contains()` is the last call to line 147 or line 150 `succ=curr.next[level].get(marked);`
+ The linearization point of `contains()` is the last call to `curr = pred.next[level].getReference()`
 
 ## 2.2 Develop a validation method
 
