@@ -45,7 +45,12 @@ pred.next[bottomLevel].compareAndSet(succ, newNode, false, false)
 
 ## 2.2 Develop a validation method
 
+Source files: 
+- `Task3.java`
+
 ## 2.3. Locked time sampling
+
+The discrepancy is 0 in our tests. In the tests, max value is set to 100000. But it doesn't mean our sampling implementation is fully correct, I believe it is because the max value is too large and is hard to 
 
 ## 2.4. Lock-free time sampling with local log
 

@@ -1,0 +1,290 @@
+Note: Main.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+=== T=1 S=Locked D=Uniform V=10000 MIX=1:1:8 O=100000 W=3 M=5 ===
+Warmup time: 334065173
+Warmup discrepancy: 0
+Warmup time: 158923011
+Warmup discrepancy: 0
+Warmup time: 132010219
+Warmup discrepancy: 0
+Measurement time: 109104062
+Measurement discrepancy: 0
+Measurement time: 132074338
+Measurement discrepancy: 0
+Measurement time: 184541370
+Measurement discrepancy: 0
+Measurement time: 207981956
+Measurement discrepancy: 0
+Measurement time: 226313184
+Measurement discrepancy: 0
+
+=== T=2 S=Locked D=Uniform V=10000 MIX=1:1:8 O=100000 W=3 M=5 ===
+Warmup time: 1128525940
+Warmup discrepancy: 0
+Warmup time: 987394334
+Warmup discrepancy: 0
+Warmup time: 910196018
+Warmup discrepancy: 0
+Measurement time: 677821308
+Measurement discrepancy: 0
+Measurement time: 676515615
+Measurement discrepancy: 0
+Measurement time: 721877821
+Measurement discrepancy: 0
+Measurement time: 757841921
+Measurement discrepancy: 0
+Measurement time: 745740701
+Measurement discrepancy: 0
+
+=== T=4 S=Locked D=Uniform V=10000 MIX=1:1:8 O=100000 W=3 M=5 ===
+Warmup time: 2196075378
+Warmup discrepancy: 0
+Warmup time: 1669584488
+Warmup discrepancy: 0
+Warmup time: 1829449377
+Warmup discrepancy: 1
+Measurement time: 1862489132
+Measurement discrepancy: 0
+Measurement time: 1776733790
+Measurement discrepancy: 0
+Measurement time: 1781464567
+Measurement discrepancy: 0
+Measurement time: 1858783589
+Measurement discrepancy: 0
+Measurement time: 1776192726
+Measurement discrepancy: 0
+
+=== T=8 S=Locked D=Uniform V=10000 MIX=1:1:8 O=100000 W=3 M=5 ===
+Warmup time: 6664917713
+Warmup discrepancy: 0
+Warmup time: 3711307924
+Warmup discrepancy: 0
+Warmup time: 3578335786
+Warmup discrepancy: 0
+Measurement time: 3432597654
+Measurement discrepancy: 0
+Measurement time: 3722813739
+Measurement discrepancy: 0
+Measurement time: 3650366476
+Measurement discrepancy: 0
+Measurement time: 3558891653
+Measurement discrepancy: 0
+Measurement time: 3391479271
+Measurement discrepancy: 0
+
+=== T=1 S=Locked D=Uniform V=10000 MIX=1:1:0 O=100000 W=3 M=5 ===
+Warmup time: 226419601
+Warmup discrepancy: 0
+Warmup time: 173517529
+Warmup discrepancy: 0
+Warmup time: 178744355
+Warmup discrepancy: 0
+Measurement time: 153453996
+Measurement discrepancy: 0
+Measurement time: 181302730
+Measurement discrepancy: 0
+Measurement time: 168478339
+Measurement discrepancy: 0
+Measurement time: 148603828
+Measurement discrepancy: 0
+Measurement time: 155491095
+Measurement discrepancy: 0
+
+=== T=2 S=Locked D=Uniform V=10000 MIX=1:1:0 O=100000 W=3 M=5 ===
+Warmup time: 1231869513
+Warmup discrepancy: 0
+Warmup time: 791819787
+Warmup discrepancy: 0
+Warmup time: 689246554
+Warmup discrepancy: 0
+Measurement time: 792215551
+Measurement discrepancy: 0
+Measurement time: 913372621
+Measurement discrepancy: 0
+Measurement time: 652398133
+Measurement discrepancy: 2
+Measurement time: 812203317
+Measurement discrepancy: 0
+Measurement time: 797120210
+Measurement discrepancy: 0
+
+=== T=4 S=Locked D=Uniform V=10000 MIX=1:1:0 O=100000 W=3 M=5 ===
+Warmup time: 2112673224
+Warmup discrepancy: 0
+Warmup time: 1646368621
+Warmup discrepancy: 0
+Warmup time: 1600544682
+Warmup discrepancy: 0
+Measurement time: 1590024260
+Measurement discrepancy: 2
+Measurement time: 1358765732
+Measurement discrepancy: 0
+Measurement time: 1693729982
+Measurement discrepancy: 0
+Measurement time: 1647969721
+Measurement discrepancy: 0
+Measurement time: 1423753283
+Measurement discrepancy: 0
+
+=== T=8 S=Locked D=Uniform V=10000 MIX=1:1:0 O=100000 W=3 M=5 ===
+Warmup time: 4182094117
+Warmup discrepancy: 4
+Warmup time: 3406419245
+Warmup discrepancy: 2
+Warmup time: 3217300374
+Warmup discrepancy: 0
+Measurement time: 3024239589
+Measurement discrepancy: 0
+Measurement time: 3473914795
+Measurement discrepancy: 2
+Measurement time: 2899667730
+Measurement discrepancy: 4
+Measurement time: 3281237843
+Measurement discrepancy: 0
+Measurement time: 3238884147
+Measurement discrepancy: 0
+
+=== T=1 S=Locked D=Normal V=10000 MIX=1:1:8 O=100000 W=3 M=5 ===
+Warmup time: 319544843
+Warmup discrepancy: 0
+Warmup time: 241511531
+Warmup discrepancy: 0
+Warmup time: 256316508
+Warmup discrepancy: 0
+Measurement time: 236914833
+Measurement discrepancy: 0
+Measurement time: 228468725
+Measurement discrepancy: 0
+Measurement time: 217106905
+Measurement discrepancy: 0
+Measurement time: 222891488
+Measurement discrepancy: 0
+Measurement time: 248619128
+Measurement discrepancy: 0
+
+=== T=2 S=Locked D=Normal V=10000 MIX=1:1:8 O=100000 W=3 M=5 ===
+Warmup time: 1337979212
+Warmup discrepancy: 0
+Warmup time: 1010831235
+Warmup discrepancy: 0
+Warmup time: 919982719
+Warmup discrepancy: 0
+Measurement time: 819068057
+Measurement discrepancy: 0
+Measurement time: 807767863
+Measurement discrepancy: 0
+Measurement time: 680308185
+Measurement discrepancy: 0
+Measurement time: 851222673
+Measurement discrepancy: 0
+Measurement time: 861193441
+Measurement discrepancy: 0
+
+=== T=4 S=Locked D=Normal V=10000 MIX=1:1:8 O=100000 W=3 M=5 ===
+Warmup time: 2968380177
+Warmup discrepancy: 0
+Warmup time: 1752001763
+Warmup discrepancy: 0
+Warmup time: 1727737818
+Warmup discrepancy: 0
+Measurement time: 1836107831
+Measurement discrepancy: 0
+Measurement time: 1732800866
+Measurement discrepancy: 0
+Measurement time: 1687652333
+Measurement discrepancy: 1
+Measurement time: 1764576644
+Measurement discrepancy: 0
+Measurement time: 1726611169
+Measurement discrepancy: 0
+
+=== T=8 S=Locked D=Normal V=10000 MIX=1:1:8 O=100000 W=3 M=5 ===
+Warmup time: 5802920864
+Warmup discrepancy: 0
+Warmup time: 3917786045
+Warmup discrepancy: 2
+Warmup time: 3527526461
+Warmup discrepancy: 0
+Measurement time: 3761599270
+Measurement discrepancy: 0
+Measurement time: 3807879242
+Measurement discrepancy: 0
+Measurement time: 3741972273
+Measurement discrepancy: 0
+Measurement time: 3528566520
+Measurement discrepancy: 1
+Measurement time: 3721926359
+Measurement discrepancy: 0
+
+=== T=1 S=Locked D=Normal V=10000 MIX=1:1:0 O=100000 W=3 M=5 ===
+Warmup time: 314497900
+Warmup discrepancy: 0
+Warmup time: 179484419
+Warmup discrepancy: 0
+Warmup time: 190397817
+Warmup discrepancy: 0
+Measurement time: 166456129
+Measurement discrepancy: 0
+Measurement time: 160318658
+Measurement discrepancy: 0
+Measurement time: 176973473
+Measurement discrepancy: 0
+Measurement time: 165270341
+Measurement discrepancy: 0
+Measurement time: 190774987
+Measurement discrepancy: 0
+
+=== T=2 S=Locked D=Normal V=10000 MIX=1:1:0 O=100000 W=3 M=5 ===
+Warmup time: 1167233600
+Warmup discrepancy: 0
+Warmup time: 735221469
+Warmup discrepancy: 0
+Warmup time: 683411662
+Warmup discrepancy: 0
+Measurement time: 591354008
+Measurement discrepancy: 0
+Measurement time: 665502172
+Measurement discrepancy: 0
+Measurement time: 676648850
+Measurement discrepancy: 0
+Measurement time: 503777221
+Measurement discrepancy: 0
+Measurement time: 483145079
+Measurement discrepancy: 0
+
+=== T=4 S=Locked D=Normal V=10000 MIX=1:1:0 O=100000 W=3 M=5 ===
+Warmup time: 1205720273
+Warmup discrepancy: 2
+Warmup time: 1075605528
+Warmup discrepancy: 2
+Warmup time: 1507696020
+Warmup discrepancy: 2
+Measurement time: 1215153100
+Measurement discrepancy: 2
+Measurement time: 935590910
+Measurement discrepancy: 0
+Measurement time: 1108114604
+Measurement discrepancy: 2
+Measurement time: 1315148863
+Measurement discrepancy: 0
+Measurement time: 1332473140
+Measurement discrepancy: 0
+
+=== T=8 S=Locked D=Normal V=10000 MIX=1:1:0 O=100000 W=3 M=5 ===
+Warmup time: 3536694913
+Warmup discrepancy: 0
+Warmup time: 2237398445
+Warmup discrepancy: 6
+Warmup time: 2720267700
+Warmup discrepancy: 8
+Measurement time: 3445645637
+Measurement discrepancy: 2
+Measurement time: 3251399709
+Measurement discrepancy: 2
+Measurement time: 3046077438
+Measurement discrepancy: 2
+Measurement time: 3056498065
+Measurement discrepancy: 2
+Measurement time: 3271107862
+Measurement discrepancy: 2
+
