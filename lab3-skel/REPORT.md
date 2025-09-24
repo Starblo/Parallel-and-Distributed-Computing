@@ -20,12 +20,14 @@ Source files:
 ![Task1.2 plot](src/task1.2_summary.png)
 
 ### Observation
-For write-heavy cases we consistently see A.2 > B.2. For read-heavy cases, on PDC A.1 > B.1, while locally A.1 < B.1 at small thread counts and only crosses over when threads are large.
+- For write-heavy mixes, B.2 < A.2, with the gap widening as threads increase.
+- For read-heavy mixes, on PDC B.1 < A.1, while locally A.1 ≲ B.1 at small thread counts and only crosses as threads grow.
+- Within each distribution, A.1 < A.2 and B.1 < B.2 (read-heavy beats write-heavy).
 
 ### Possible explanations
-1. A Normal distribution concentrates keys, yielding more duplicates and a smaller effective working set, so `add/remove` bring shorter traversals, hence B.2 faster.
-2. For read-heavy mixes, a Normal distribution improves locality but also creates hot spots that disturb readers; on PDC the locality benefit dominates so B.1 is faster, whereas on the local machine at small thread counts hot-spot effects dominate, making A.1 < B.1 until T increases.
-
+1. Normal concentrates keys, reducing the effective set and shortening traversals for updates—hence B.2 faster despite some extra contention.
+2. Normal improves cache locality but creates hot spots; on PDC locality dominates, while locally at low T hot-spot interference offsets it.
+3. Read-heavy mixes avoid the level-0 CAS bottleneck and helping costs, so .1 is consistently faster than .2 for both distributions.
 
 # 2. Identify and validate linearization points
 

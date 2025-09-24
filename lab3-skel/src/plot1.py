@@ -1,8 +1,9 @@
 import re
 import matplotlib.pyplot as plt
 from pathlib import Path
+import numpy as np
 
-filename = "task1.1.out"
+filename = "task1.2.out"
 hdr = re.compile(r"^=== T=(\d+)\s+S=\w+\s+D=(\w+)\s+V=\d+\s+MIX=([\d:]+)\s+O=\d+\s+W=\d+\s+M=\d+\s+===$")
 meas = re.compile(r"^Measurement time:\s+(\d+)$")
 
@@ -37,12 +38,18 @@ while i < len(lines):
 plt.figure()
 for key in sorted(data.keys()):
     Ts = sorted(data[key].keys())
-    avg_ms = [sum(data[key][t]) / len(data[key][t]) / 1e6 for t in Ts]
-    plt.plot(Ts, avg_ms, marker="o", label=key)
+
+    avg_ms, err_ms = [], []
+    for t in Ts:
+        vals = np.array(data[key][t], dtype=float) / 1e6
+        avg_ms.append(vals.mean())
+        err_ms.append(vals.std(ddof=1) if len(vals) > 1 else 0.0)
+
+    plt.errorbar(Ts, avg_ms, yerr=err_ms, marker="o", linestyle="-", capsize=3, label=key)
 
 plt.xlabel("Threads")
 plt.ylabel("Execution time (ms)")
-plt.title(f"Average execution time 1.1")
+plt.title("Average execution time 1.2")
 plt.grid(True, linestyle="--", alpha=0.4)
 plt.legend()
 out = f"{Path(filename).stem}_summary.png"

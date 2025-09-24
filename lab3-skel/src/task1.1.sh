@@ -15,10 +15,10 @@ exec > task1.1.out 2>&1
 # -----------------------------------------
 
 SET_VERSION=Default      # <S>
-MAX_VALUE=1000         # <V>
+MAX_VALUE=100000         # <V>
 OPS_PER_THREAD=100000    # <O>
 WARMUP_ROUNDS=3          # <W>
-MEASURE_ROUNDS=5         # <M>
+MEASURE_ROUNDS=20         # <M>
 
 # Loop parameters (edit this block to select the matrix)
 DISTS="Uniform Normal"           # <D>
