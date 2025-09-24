@@ -8,91 +8,99 @@ different version.
 The following have been reloaded with a version change:
   1) gcc-native/12.3 => gcc-native/13.2
 
+Available Cores: 96
 Sorting algorithm:  ExecutorService
 Thread count:       2
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 2 68364561.00 565028.91
+ExecutorService 2 797371806.00 5162319.91
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ExecutorService
 Thread count:       4
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 4 48013556.00 6426477.26
+ExecutorService 4 463688490.00 3423939.77
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ExecutorService
 Thread count:       8
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 8 52814682.00 4883212.29
+ExecutorService 8 294254298.00 1711973.16
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ExecutorService
 Thread count:       16
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 16 52840706.00 4168297.08
+ExecutorService 16 236606176.00 1908272.65
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ExecutorService
 Thread count:       32
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 32 52003196.00 3793117.46
+ExecutorService 32 188951651.00 884822.35
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ExecutorService
 Thread count:       48
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 48 52267949.00 3382351.07
+ExecutorService 48 184627224.00 3662390.88
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ExecutorService
 Thread count:       64
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 64 51111563.00 3448156.38
+ExecutorService 64 174176958.00 1570667.97
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ExecutorService
 Thread count:       96
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ExecutorService 96 53052954.00 4193936.06
+ExecutorService 96 184976215.00 1718554.26
 Measurements done

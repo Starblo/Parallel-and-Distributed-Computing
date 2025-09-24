@@ -8,91 +8,99 @@ different version.
 The following have been reloaded with a version change:
   1) gcc-native/12.3 => gcc-native/13.2
 
+Available Cores: 96
 Sorting algorithm:  ParallelStream
 Thread count:       2
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ParallelStream 2 48540197.00 5738887.52
+ParallelStream 2 1091828769.00 1430419.85
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ParallelStream
 Thread count:       4
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ParallelStream 4 32540914.00 3577862.34
+ParallelStream 4 622637497.00 17423318.84
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ParallelStream
 Thread count:       8
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ParallelStream 8 27707573.00 3131782.70
+ParallelStream 8 382422308.00 18272223.33
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ParallelStream
 Thread count:       16
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ParallelStream 16 30873646.00 3333214.38
+ParallelStream 16 291861890.00 14025402.43
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ParallelStream
 Thread count:       32
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ParallelStream 32 33809459.00 18237733.08
+ParallelStream 32 208598708.00 9130281.84
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ParallelStream
 Thread count:       48
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ParallelStream 48 39047360.00 10367724.73
+ParallelStream 48 180225478.00 3008318.62
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ParallelStream
 Thread count:       64
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ParallelStream 64 35084792.00 2888123.40
+ParallelStream 64 178679199.00 2504244.73
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ParallelStream
 Thread count:       96
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ParallelStream 96 44556804.00 7110575.32
+ParallelStream 96 189188088.00 3831983.57
 Measurements done

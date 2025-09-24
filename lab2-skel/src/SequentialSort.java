@@ -1,61 +1,53 @@
 public class SequentialSort implements Sorter {
 
-        public SequentialSort() {
-                
-        }
+    public SequentialSort() {}
 
-    public static void main(String[] args){
-        // int[] arr = {5,4,3,2,1,5,6,7,9,11,32,1,0};
-        // SequentialSort sequentialSort = new SequentialSort();
-        // sequentialSort.sort(arr);
-        // System.out.println(Arrays.toString(arr));
+    public static void main(String[] args) {
+        // int[] arr = {5, 4, 3, 2, 1, 5, 6, 7, 9, 11, 32, 1, 0};
+        // SequentialSort sorter = new SequentialSort();
+        // sorter.sort(arr);
+        // System.out.println(java.util.Arrays.toString(arr));
     }
 
+    @Override
     public void sort(int[] arr) {
-        mergesort(arr, 0, arr.length - 1);
+        if (arr == null || arr.length < 2) return;
+        int[] aux = new int[arr.length];
+        mergesort(arr, aux, 0, arr.length - 1);
     }
 
-    public void mergesort(int[] arr, int left, int right)
-    {
-        if (right - left <= 1)
-        {
-            if (arr[left] > arr[right])
-            {
-                int tempt = arr[right];
+    private void mergesort(int[] arr, int[] aux, int left, int right) {
+        if (right - left <= 1) {
+            if (arr[left] > arr[right]) {
+                int t = arr[right];
                 arr[right] = arr[left];
-                arr[left] = tempt;
+                arr[left] = t;
             }
             return;
         }
-        int mid = (left + right) / 2;
-        mergesort(arr, left, mid);
-        mergesort(arr, mid + 1, right);
-        merge(arr, left, mid, right);
+        int mid = left + ((right - left) >>> 1);
+        mergesort(arr, aux, left, mid);
+        mergesort(arr, aux, mid + 1, right);
+        merge(arr, aux, left, mid, right);
     }
 
-    public void merge(int[] arr, int left, int mid, int right)
-    {
+    private void merge(int[] arr, int[] aux, int left, int mid, int right) {
         int len = right - left + 1;
-        int[] tempt_arr = new int[len];
-        int left_ptr = left;
-        int right_ptr = mid + 1;
-        for(int i = 0; i < len; i++)
-        {
-            if (left_ptr > mid || (right_ptr <= right && arr[right_ptr] < arr[left_ptr]))
-            {
-                tempt_arr[i] = arr[right_ptr];
-                right_ptr++;
-            }
-            else
-            {
-                tempt_arr[i] = arr[left_ptr];
-                left_ptr++;
+        int leftPtr = left;
+        int rightPtr = mid + 1;
+
+        for (int i = 0; i < len; i++) {
+            if (leftPtr > mid || (rightPtr <= right && arr[rightPtr] < arr[leftPtr])) {
+                aux[left + i] = arr[rightPtr++];
+            } else {
+                aux[left + i] = arr[leftPtr++];
             }
         }
-        System.arraycopy(tempt_arr, 0, arr, left, len);
+        System.arraycopy(aux, left, arr, left, len);
     }
 
-        public int getThreads() {
-                return 1;
-        }
+    @Override
+    public int getThreads() {
+        return 1;
+    }
 }

@@ -8,91 +8,99 @@ different version.
 The following have been reloaded with a version change:
   1) gcc-native/12.3 => gcc-native/13.2
 
+Available Cores: 96
 Sorting algorithm:  ForkJoinPool
 Thread count:       2
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 2 66270209.00 497031.76
+ForkJoinPool 2 795457915.00 4767737.50
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ForkJoinPool
 Thread count:       4
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 4 45684658.00 3986254.43
+ForkJoinPool 4 443858899.00 2452881.78
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ForkJoinPool
 Thread count:       8
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 8 52226244.00 4353463.43
+ForkJoinPool 8 291010720.00 2284326.63
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ForkJoinPool
 Thread count:       16
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 16 50566464.00 3071855.36
+ForkJoinPool 16 211404735.00 2338739.01
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ForkJoinPool
 Thread count:       32
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 32 52095716.00 2504218.64
+ForkJoinPool 32 177389730.00 4760710.37
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ForkJoinPool
 Thread count:       48
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 48 50679004.00 3063299.96
+ForkJoinPool 48 176825242.00 2357450.06
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ForkJoinPool
 Thread count:       64
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 64 50416853.00 2180126.59
+ForkJoinPool 64 164045920.00 2129533.49
 Measurements done
+Available Cores: 96
 Sorting algorithm:  ForkJoinPool
 Thread count:       96
-Array size:         1000000
+Array size:         10000000
 Warm-up rounds:     10
-Measurement rounds: 1000
+Measurement rounds: 10
 RNG seed:           42
 Validating sorter
 Validation passed
 Starting Measurements
-ForkJoinPool 96 50493259.00 2102917.71
+ForkJoinPool 96 159511930.00 2213690.15
 Measurements done

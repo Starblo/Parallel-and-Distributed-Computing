@@ -14,29 +14,29 @@
 # 20 minutes wall clock time will be given to this job
 #SBATCH -t 00:20:00
 
-#SBATCH --output=task1.out    # Output file format: jobname_jobid.out
+#SBATCH --output=task3.out    # Output file format: jobname_jobid.out
 
 # Number of MPI processes
 #SBATCH -n 1
 
 #SBATCH --nodes=1
 
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=96
 
 ml PDC java
 
 set -e
 
-ALGO=Sequential
+ALGO=ExecutorService
 THREADS=1
-SIZE=1000000
+SIZE=10000000
 WARMUP=10
-MEASURE=1000
+MEASURE=10
 SEED=42
 
 javac MeasureMain.java
-java MeasureMain $ALGO $THREADS $SIZE $WARMUP $MEASURE $SEED
+# java MeasureMain $ALGO $THREADS $SIZE $WARMUP $MEASURE $SEED
 
-# for THREADS in 2 4 8 16 32 48 64 96; do
-# 	java MeasureMain $ALGO $THREADS $SIZE $WARMUP $MEASURE $SEED
-# done
+for THREADS in 2 4 8 16 32 48 64 96; do
+	java MeasureMain $ALGO $THREADS $SIZE $WARMUP $MEASURE $SEED
+done

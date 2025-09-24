@@ -9,6 +9,8 @@ public class ExecutorServiceSort implements Sorter {
         private final ExecutorService pool;
 
         public ExecutorServiceSort(int threads) {
+                int cores = Runtime.getRuntime().availableProcessors();
+                System.out.println("Available Cores: " + cores);
                 this.threads = Math.max(1, threads);
                 this.pool = Executors.newFixedThreadPool(this.threads, new ThreadFactory() {
                     @Override public Thread newThread(Runnable r) {
@@ -22,15 +24,16 @@ public class ExecutorServiceSort implements Sorter {
 
         public void sort(int[] arr) {
                 if (arr == null || arr.length <= 1) return;
+                int[] aux = new int[arr.length];
                 if (threads <= 1) {
-                        mergesort(arr, 0, arr.length - 1);
+                        mergesort(arr, aux, 0, arr.length - 1);
                         return;
                 }
-                int maxDepth = floorLog2(threads);
+                int maxDepth = ceilLog2(threads);
                 try {
-                        parallelMergeSort(arr, 0, arr.length - 1, maxDepth);
+                        parallelMergeSort(arr, aux, 0, arr.length - 1, maxDepth);
                 } catch (InterruptedException | ExecutionException e) {
-                        mergesort(arr, 0, arr.length - 1);
+                        mergesort(arr, aux, 0, arr.length - 1);
                 }
         }
 
@@ -38,17 +41,16 @@ public class ExecutorServiceSort implements Sorter {
                 return threads;
         }
 
-        private int floorLog2(int n) {
-                int lg = 0;
-                while ((n >>= 1) > 0) ++lg;
-                return lg;
+        private int ceilLog2(int n) {
+        if (n <= 1) return 0;
+        return 32 - Integer.numberOfLeadingZeros(n - 1);
         }
 
-        private void parallelMergeSort(int[] arr, int left, int right, int depth)
+        private void parallelMergeSort(int[] arr, int[] aux, int left, int right, int depth)
                         throws InterruptedException, ExecutionException {
                 if (right <= left) return;
                 if (depth == 0) {
-                        mergesort(arr, left, right);
+                        mergesort(arr, aux, left, right);
                         return;
                 }
 
@@ -56,19 +58,19 @@ public class ExecutorServiceSort implements Sorter {
 
                 Future<?> leftTask = pool.submit(() -> {
                         try {
-                                parallelMergeSort(arr, left, mid, depth - 1);
+                                parallelMergeSort(arr, aux, left, mid, depth - 1);
                         } catch (InterruptedException | ExecutionException e) {
                                 throw new RuntimeException(e);
                         }
                 });
 
-                parallelMergeSort(arr, mid + 1, right, depth - 1);
+                parallelMergeSort(arr, aux, mid + 1, right, depth - 1);
                 leftTask.get();
 
-                merge(arr, left, mid, right);
+                merge(arr, aux, left, mid, right);
         }
 
-        public void mergesort(int[] arr, int left, int right)
+        public void mergesort(int[] arr, int[] aux, int left, int right)
         {
                 if (right - left <= 1)
                 {
@@ -81,30 +83,29 @@ public class ExecutorServiceSort implements Sorter {
                         return;
                 }
                 int mid = left + (right - left) / 2;
-                mergesort(arr, left, mid);
-                mergesort(arr, mid + 1, right);
-                merge(arr, left, mid, right);
+                mergesort(arr, aux, left, mid);
+                mergesort(arr, aux, mid + 1, right);
+                merge(arr, aux, left, mid, right);
         }
 
-        public void merge(int[] arr, int left, int mid, int right)
+        public void merge(int[] arr, int[] aux, int left, int mid, int right)
         {
                 int len = right - left + 1;
-                int[] tempt_arr = new int[len];
                 int left_ptr = left;
                 int right_ptr = mid + 1;
                 for(int i = 0; i < len; i++)
                 {
                         if (left_ptr > mid || (right_ptr <= right && arr[right_ptr] < arr[left_ptr]))
                         {
-                                tempt_arr[i] = arr[right_ptr];
+                                aux[left + i] = arr[right_ptr];
                                 right_ptr++;
                         }
                         else
                         {
-                                tempt_arr[i] = arr[left_ptr];
+                                aux[left + i] = arr[left_ptr];
                                 left_ptr++;
                         }
                 }
-                System.arraycopy(tempt_arr, 0, arr, left, len);
+                System.arraycopy(aux, left, arr, left, len);
         }
 }

@@ -11,6 +11,8 @@ public class ForkJoinPoolSort implements Sorter {
         private final ForkJoinPool pool;
 
         public ForkJoinPoolSort(int threads) {
+                int cores = Runtime.getRuntime().availableProcessors();
+                System.out.println("Available Cores: " + cores);
                 this.threads = Math.max(1, threads);
                 this.pool = new ForkJoinPool(
                         this.threads,
@@ -32,8 +34,9 @@ public class ForkJoinPoolSort implements Sorter {
         @Override
         public void sort(int[] arr) {
                 if (arr == null || arr.length <= 1) return;
-                int d = floorLog2(threads);
-                pool.invoke(new Worker(arr, 0, arr.length - 1, d));
+                int d = ceilLog2(threads);
+                int[] aux = new int[arr.length];
+                pool.invoke(new Worker(arr, aux, 0, arr.length - 1, d));
         }
 
         @Override
@@ -41,13 +44,13 @@ public class ForkJoinPoolSort implements Sorter {
                 return threads;
         }
 
-        private int floorLog2(int n) {
-                int lg = 0;
-                while ((n >>= 1) > 0) ++lg;
-                return lg;
+        private int ceilLog2(int n) {
+        if (n <= 1) return 0;
+        return 32 - Integer.numberOfLeadingZeros(n - 1);
         }
 
-        private void mergesort(int[] arr, int left, int right)
+
+        private void mergesort(int[] arr, int[] aux, int left, int right)
         {
                 if (right - left <= 1)
                 {
@@ -60,41 +63,42 @@ public class ForkJoinPoolSort implements Sorter {
                         return;
                 }
                 int mid = left + (right - left) / 2;
-                mergesort(arr, left, mid);
-                mergesort(arr, mid + 1, right);
-                merge(arr, left, mid, right);
+                mergesort(arr, aux, left, mid);
+                mergesort(arr, aux, mid + 1, right);
+                merge(arr, aux, left, mid, right);
         }
 
-        private void merge(int[] arr, int left, int mid, int right)
+        private void merge(int[] arr, int[] aux, int left, int mid, int right)
         {
                 int len = right - left + 1;
-                int[] tempt_arr = new int[len];
                 int left_ptr = left;
                 int right_ptr = mid + 1;
                 for(int i = 0; i < len; i++)
                 {
                         if (left_ptr > mid || (right_ptr <= right && arr[right_ptr] < arr[left_ptr]))
                         {
-                                tempt_arr[i] = arr[right_ptr];
+                                aux[left + i] = arr[right_ptr];
                                 right_ptr++;
                         }
                         else
                         {
-                                tempt_arr[i] = arr[left_ptr];
+                                aux[left + i] = arr[left_ptr];
                                 left_ptr++;
                         }
                 }
-                System.arraycopy(tempt_arr, 0, arr, left, len);
+                System.arraycopy(aux, left, arr, left, len);
         }
 
         private class Worker extends RecursiveAction {
                 private final int[] arr;
+                private final int[] aux;
                 private final int left;
                 private final int right;
                 private final int depth;
 
-                Worker(int[] arr, int left, int right, int depth) {
+                Worker(int[] arr, int[] aux, int left, int right, int depth) {
                         this.arr = arr;
+                        this.aux = aux;
                         this.left = left;
                         this.right = right;
                         this.depth = depth;
@@ -105,15 +109,15 @@ public class ForkJoinPoolSort implements Sorter {
                         if (right <= left) return;
 
                         if (depth == 0) {
-                                mergesort(arr, left, right);
+                                mergesort(arr, aux, left, right);
                                 return;
                         }
 
                         int mid = left + (right - left) / 2;
-                        Worker a = new Worker(arr, left, mid, depth - 1);
-                        Worker b = new Worker(arr, mid + 1, right, depth - 1);
+                        Worker a = new Worker(arr, aux, left, mid, depth - 1);
+                        Worker b = new Worker(arr, aux, mid + 1, right, depth - 1);
                         invokeAll(a, b);
-                        merge(arr, left, mid, right);
+                        merge(arr, aux, left, mid, right);
                 }
         }
 }

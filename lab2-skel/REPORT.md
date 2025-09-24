@@ -2,6 +2,11 @@
 - Group x&zx
 - Li, Xin and Hong, Zixiang
 
+## Changes & Results (version 2)
+1. Optimized `SequentialSort` to allocate one auxiliary array once and pass it through recursion; applied the same fix to `ExecutorServiceSort` and `ForkJoinPoolSort`. Result: fewer allocations/GC.
+2. Redesigned `ParallelStream` to use lambda-based tasks with one reused buffer.
+3. Reran all experiments with array size 10,000,000; achieved target speedups (~5–10×) without >25% degradation beyond 32 threads.
+
 ## Task 1: Sequential Sort
 We chose to implement MergeSort
 
@@ -30,6 +35,7 @@ We see that when $threads<15$, the speedup increases sharply; beyond that point,
 ### Our model: Amdahl + overhead
 
 We add a linear overhead term to classical Amdahl’s law:
+
 $$
 S(N)=\frac{1}{(1-p)+\frac{p}{N}+\delta(N)}
 $$
@@ -51,7 +57,7 @@ Source files:
 
 - `ExecutorServiceSort.java`
 
-We implement a fixed thread pool with daemon workers to ensure the JVM exits cleanly after measurements, stop parallel recursion when the depth limit $d=\lfloor\log_2 Thread\rfloor$ is reached. This keeps the merge logic identical to the sequential version and prevents task explosion.
+We implement a fixed thread pool with daemon workers to ensure the JVM exits cleanly after measurements.
 
 ## Task 4: ForkJoinPoolSort
 
@@ -59,7 +65,7 @@ Source files:
 
 - `ForkJoinPoolSort.java`
 
-We implement a parallel merge sort with a `ForkJoinPool` per subrange. Each task splits at the midpoint, runs both halves in parallel via `invokeAll`, and merges in the parent thread after the joins; stop parallel recursion when the depth limit $d=\lfloor\log_2 Thread\rfloor$ is reached.
+We implement a parallel merge sort with a `ForkJoinPool` per subrange. Each task splits at the midpoint, runs both halves in parallel via `invokeAll`, and merges in the parent thread after the joins.
 
 ## Task 5: ParallelStreamSort
 
@@ -67,26 +73,13 @@ Source files:
 
 - `ParallelStreamSort.java`
 
-We first use 
-```
-ForkJoinPool pool = new ForkJoinPool(threads);
-```
-to create a thread pool.
-
-
-Then, we use `Arrays.stream` to have an stream object of the int array. We use `.parallel()` to have a parallel stream of the int array. We use `.sorted()` to sort the stream and use `.toArray()` to convert the result to array.
-
-We use 
-```
-System.arraycopy(tempt, 0, arr, 0, arr.length);
-```
-to copy the tempt result to `arr`
+ParallelStreamSort implements a parallel mergesort using Java’s parallel streams, executed inside a custom ForkJoinPool to control the thread count.
 
 ## Task 6: Performance measurements with PDC
 Out parameters:
-- `SIZE=1000000`
+- `SIZE=10000000`
 - `WARMUP=10`
-- `MEASURE=1000`
+- `MEASURE=10`
 - `SEED=42`
 
 ![time plot](data/time_perf.png)
