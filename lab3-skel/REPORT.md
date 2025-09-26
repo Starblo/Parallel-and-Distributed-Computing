@@ -52,7 +52,15 @@ Source files:
 
 ## 2.3. Locked time sampling
 
-The discrepancy is 0 in our tests. In the tests, max value is set to 100000. But it doesn't mean our sampling implementation is fully correct, I believe it is because the max value is too large and is hard to 
+Experiment results:
+- `task2.3.out`
+
+We set the max sample value to 10,000. The discrepancy count is always smaller than 100. It’s almost ten times slower than without using log. The discrepancy may come from the capture of the incorrect linearization point of `remove()`. When `imarkedIt` is false and `marked[0]` is true, the linearization point of this `remove` is the linearization point of the `remove()` method by the thread that successfully marked the next field. But in our code, we log the time `compareAndSet`, which may cause discrepancy.
+
+
+![Task2.3 plot](src/task2.3_summary.png)
+
+The discrepancy is always below 100, it grows as the number of threads increases.
 
 ## 2.4. Lock-free time sampling with local log
 

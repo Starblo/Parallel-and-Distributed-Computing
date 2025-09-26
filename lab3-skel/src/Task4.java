@@ -1,22 +1,27 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicMarkableReference;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class Task3<T extends Comparable<T>> implements LockFreeSet<T> {
+public class Task4<T extends Comparable<T>> implements LockFreeSet<T> {
     /* Number of levels */
     private static final int MAX_LEVEL = 16;
+    private static final int MAX_THREADS = 48;
 
-    private final Log.Entry[] logArr = new Log.Entry[800000];
-    private int logIndex = 0;
     private final ReentrantLock tsLock = new ReentrantLock();
+    HashMap<Integer, LinkedList<Log.Entry>> map = new HashMap<Integer, LinkedList<Log.Entry>>();
 
     private final Node<T> head = new Node<T>();
     private final Node<T> tail = new Node<T>();
 
-    public Task3() {
+    public Task4() {
         for (int i = 0; i < head.next.length; i++) {
-            head.next[i] = new AtomicMarkableReference<Task3.Node<T>>(tail, false);
+            head.next[i] = new AtomicMarkableReference<Task4.Node<T>>(tail, false);
+        }
+        for (int i = 0; i < MAX_THREADS; i++){
+            map.put(i, new LinkedList<>());
         }
     }
 
@@ -67,18 +72,12 @@ public class Task3<T extends Comparable<T>> implements LockFreeSet<T> {
         Node<T>[] preds = (Node<T>[]) new Node[MAX_LEVEL + 1];
         Node<T>[] succs = (Node<T>[]) new Node[MAX_LEVEL + 1];
 
-        tsLock.lock();
-        int index = logIndex;
-        try {
-            logIndex++;
-            record(index, Log.Method.ADD, x);
-        } finally {
-            tsLock.unlock();
-        }
+        Log.Entry entry = record(Log.Method.ADD, x);
+
         while (true) {
-            boolean found = find(x, preds, succs, index);
+            boolean found = find(x, preds, succs, entry);
             if (found) {
-                recordRet(index, false);
+                recordRetAndEnqueue(entry, threadId, false);
                 return false;
             } else {
                 Node<T> newNode = new Node(x, topLevel);
@@ -89,13 +88,8 @@ public class Task3<T extends Comparable<T>> implements LockFreeSet<T> {
                 Node<T> pred = preds[bottomLevel];
                 Node<T> succ = succs[bottomLevel];
 
-                tsLock.lock();
                 boolean ret = pred.next[bottomLevel].compareAndSet(succ, newNode, false, false);
-                try {
-                    recordTimeStamp(index);
-                } finally {
-                    tsLock.unlock();
-                }
+                recordTimeStamp(entry);
 
                 if (!ret) {
                     continue;
@@ -106,10 +100,10 @@ public class Task3<T extends Comparable<T>> implements LockFreeSet<T> {
                         succ = succs[level];
                         if (pred.next[level].compareAndSet(succ, newNode, false, false))
                             break;
-                        find(x, preds, succs, -1);
+                        find(x, preds, succs, null);
                     }
                 }
-                recordRet(index, true);
+                recordRetAndEnqueue(entry, threadId, true);
                 return true;
             }
         }
@@ -122,19 +116,12 @@ public class Task3<T extends Comparable<T>> implements LockFreeSet<T> {
         Node<T>[] succs = (Node<T>[]) new Node[MAX_LEVEL + 1];
         Node<T> succ;
 
-        tsLock.lock();
-        int index = logIndex;
-        try {
-            logIndex++;
-            record(index, Log.Method.REMOVE, x);
-        } finally {
-            tsLock.unlock();
-        }
+        Log.Entry entry = record(Log.Method.REMOVE, x);
 
         while (true) {
-            boolean found = find(x, preds, succs, index);
+            boolean found = find(x, preds, succs, entry);
             if (!found) {
-                recordRet(index, false);
+                recordRetAndEnqueue(entry, threadId, false);
                 return false;
             } else {
                 Node<T> nodeToRemove = succs[bottomLevel];
@@ -149,21 +136,15 @@ public class Task3<T extends Comparable<T>> implements LockFreeSet<T> {
                 boolean[] marked = {false};
                 succ = nodeToRemove.next[bottomLevel].get(marked);
                 while (true) {
-                    tsLock.lock();
-                    boolean iMarkedIt;
-                    try {
-                        iMarkedIt = nodeToRemove.next[bottomLevel].compareAndSet(succ, succ, false, true);
-                        recordTimeStamp(index);
-                    } finally {
-                        tsLock.unlock();
-                    }
+                    boolean iMarkedIt = nodeToRemove.next[bottomLevel].compareAndSet(succ, succ, false, true);
+                    recordTimeStamp(entry);
                     succ = succs[bottomLevel].next[bottomLevel].get(marked);
                     if (iMarkedIt) {
-                        find(x, preds, succs, -1);
-                        recordRet(index, true);
+                        find(x, preds, succs, null);
+                        recordRetAndEnqueue(entry, threadId, true);
                         return true;
                     } else if (marked[0]) {
-                        recordRet(index, false);
+                        recordRetAndEnqueue(entry, threadId, false);
                         return false;
                     }
                 }
@@ -179,33 +160,16 @@ public class Task3<T extends Comparable<T>> implements LockFreeSet<T> {
         Node<T> curr = null;
         Node<T> succ = null;
 
-        tsLock.lock();
-        int index = logIndex;
-        try {
-            logIndex++;
-            record(index, Log.Method.CONTAINS, x);
-        } finally {
-            tsLock.unlock();
-        }
+        Log.Entry entry = record(Log.Method.CONTAINS, x);
 
         for (int level = MAX_LEVEL; level >= bottomLevel; level--) {
-            tsLock.lock();
-            try {
-                curr = pred.next[level].getReference();
-                recordTimeStamp(index);
-            } finally {
-                tsLock.unlock();
-            }
+            curr = pred.next[level].getReference();
+            recordTimeStamp(entry);
             while (true) {
                 succ = curr.next[level].get(marked);
                 while (marked[0]) {
-                    tsLock.lock();
-                    try {
-                        curr = succ;
-                        recordTimeStamp(index);
-                    } finally {
-                        tsLock.unlock();
-                    }
+                    curr = succ;
+                    recordTimeStamp(entry);
                     succ = curr.next[level].get(marked);
                 }
                 if (curr.value != null && x.compareTo(curr.value) < 0) {
@@ -218,30 +182,24 @@ public class Task3<T extends Comparable<T>> implements LockFreeSet<T> {
         }
 
         boolean ret = curr.value != null && x.compareTo(curr.value) == 0;
-        recordRet(index, ret);
+        recordRetAndEnqueue(entry, threadId, ret);
         return ret;
     }
 
-    private boolean find(T x, Node<T>[] preds, Node<T>[] succs, int index) {
+    private boolean find(T x, Node<T>[] preds, Node<T>[] succs, Log.Entry entry) {
         int bottomLevel = 0;
         boolean[] marked = {false};
         boolean snip;
         Node<T> pred = null;
         Node<T> curr = null;
         Node<T> succ = null;
-
         retry:
         while (true) {
             pred = head;
             for (int level = MAX_LEVEL; level >= bottomLevel; level--) {
-                if (level == bottomLevel && index >= 0) {
-                    tsLock.lock();
-                    try {
-                        curr = pred.next[level].getReference();
-                        recordTimeStamp(index);
-                    } finally {
-                        tsLock.unlock();
-                    }
+                if (level == bottomLevel) {
+                    curr = pred.next[level].getReference();
+                    recordTimeStamp(entry);
                 } else {
                     curr = pred.next[level].getReference();
                 }
@@ -250,14 +208,9 @@ public class Task3<T extends Comparable<T>> implements LockFreeSet<T> {
                     while (marked[0]) {
                         snip = pred.next[level].compareAndSet(curr, succ, false, false);
                         if (!snip) continue retry;
-                        if (level == bottomLevel && index >= 0) {
-                            tsLock.lock();
-                            try {
-                                curr = pred.next[level].getReference();
-                                recordTimeStamp(index);
-                            } finally {
-                                tsLock.unlock();
-                            }
+                        if (level == bottomLevel) {
+                            curr = pred.next[level].getReference();
+                            recordTimeStamp(entry);
                         } else {
                             curr = pred.next[level].getReference();
                         }
@@ -278,56 +231,38 @@ public class Task3<T extends Comparable<T>> implements LockFreeSet<T> {
         }
     }
 
-    private void record(int index, Log.Method method, T x) {
-        tsLock.lock();
-        try {
-            int arg = (x == null ? 0 : x.hashCode());
-            logArr[index] = new Log.Entry(method, arg, false, 0);
-        } finally {
-            tsLock.unlock();
+    private Log.Entry record(Log.Method method, T x) {
+        int arg = (x == null ? 0 : x.hashCode());
+        return new Log.Entry(method, arg, false, 0);
+    }
+
+    private void recordTimeStamp(Log.Entry entry) {
+        if (entry != null) {
+            entry.timestamp = System.nanoTime();
         }
     }
 
-    private void recordTimeStamp(int index) {
-        tsLock.lock();
-        try {
-            long ts = System.nanoTime();
-            Log.Entry entry = logArr[index];
-            if (entry != null) {
-                entry.timestamp = ts;
-            }
-        } finally {
-            tsLock.unlock();
-        }
-    }
-
-    private void recordRet(int index, boolean ret) {
-        tsLock.lock();
-        try {
-            Log.Entry entry = logArr[index];
-            if (entry != null) {
-                entry.ret = ret;
-            }
-        } finally {
-            tsLock.unlock();
+    private void recordRetAndEnqueue(Log.Entry entry, int threadId, boolean ret) {
+        if (entry != null) {
+            entry.ret = ret;
+            map.get(threadId).add(entry);
         }
     }
 
 
     public Log.Entry[] getLog() {
-        Log.Entry[] result = new Log.Entry[logIndex];
-        System.arraycopy(logArr, 0, result, 0, logIndex);
-        return result;
+        ArrayList<Log.Entry> entries = new ArrayList<>();
+        map.values().forEach(entries::addAll);
+        return entries.toArray(new Log.Entry[0]);
     }
 
     public void reset() {
         for (int i = 0; i < head.next.length; i++) {
-            head.next[i] = new AtomicMarkableReference<Task3.Node<T>>(tail, false);
+            head.next[i] = new AtomicMarkableReference<Task4.Node<T>>(tail, false);
         }
-        for (int i = 0; i < logIndex; i++) {
-            logArr[i] = null;
+        for (int i = 0; i < MAX_THREADS; i++) {
+            map.get(i).clear();
         }
-        logIndex = 0;
     }
 }
 

@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import numpy as np
 
-filename = "task1.2.out"
+taskno = "1.1"
+filename = f"task{taskno}.out"
 hdr = re.compile(r"^=== T=(\d+)\s+S=\w+\s+D=(\w+)\s+V=\d+\s+MIX=([\d:]+)\s+O=\d+\s+W=\d+\s+M=\d+\s+===$")
 meas = re.compile(r"^Measurement time:\s+(\d+)$")
 
@@ -49,7 +50,7 @@ for key in sorted(data.keys()):
 
 plt.xlabel("Threads")
 plt.ylabel("Execution time (ms)")
-plt.title("Average execution time 1.2")
+plt.title(f"Average execution time {taskno}")
 plt.grid(True, linestyle="--", alpha=0.4)
 plt.legend()
 out = f"{Path(filename).stem}_summary.png"
