@@ -1,6 +1,6 @@
 ml PDC java
 set -e
-exec > task2.4.out 2>&1
+exec > task2.5.out 2>&1
 
 # -----------------------------------------
 # java Main <T> <S> <D> <V> <A>:<R>:<C> <O> <W> <M>
@@ -14,7 +14,7 @@ exec > task2.4.out 2>&1
 # <M>  Number of measurements for the final statistics.
 # -----------------------------------------
 
-SET_VERSION=LocalLog      # <S>
+SET_VERSION=GlobalLog      # <S>
 MAX_VALUE=10000         # <V>
 OPS_PER_THREAD=100000    # <O>
 WARMUP_ROUNDS=3          # <W>

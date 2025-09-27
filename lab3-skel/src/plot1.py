@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import numpy as np
 
-taskno = "1.1"
+taskno = "2.4"
 filename = f"task{taskno}.out"
 hdr = re.compile(r"^=== T=(\d+)\s+S=\w+\s+D=(\w+)\s+V=\d+\s+MIX=([\d:]+)\s+O=\d+\s+W=\d+\s+M=\d+\s+===$")
 meas = re.compile(r"^Measurement time:\s+(\d+)$")

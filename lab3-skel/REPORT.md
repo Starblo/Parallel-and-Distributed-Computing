@@ -45,6 +45,8 @@ pred.next[bottomLevel].compareAndSet(succ, newNode, false, false)
 
  The linearization point of `contains()` is the last call to `curr = pred.next[level].getReference()`
 
+We can record a log entry at the point when we reach a linearization point.
+
 ## 2.2 Develop a validation method
 
 Source files: 
@@ -55,17 +57,55 @@ Source files:
 Experiment results:
 - `task2.3.out`
 
-We set the max sample value to 10,000. The discrepancy count is always smaller than 100. It’s almost ten times slower than without using log. The discrepancy may come from the capture of the incorrect linearization point of `remove()`. When `imarkedIt` is false and `marked[0]` is true, the linearization point of this `remove` is the linearization point of the `remove()` method by the thread that successfully marked the next field. But in our code, we log the time `compareAndSet`, which may cause discrepancy.
+We set the max sample value to 10,000. The discrepancy count is always smaller than 100. It’s almost ten times slower than without using log. The discrepancy may come from the incorrect capture of the linearization point of `remove()`. When `imarkedIt` is false and `marked[0]` is true, the linearization point of this `remove` is the linearization point of the `remove()` method by the thread that successfully marked the next field. But in our code, we log the time `compareAndSet`, which may cause discrepancy.
 
 
 ![Task2.3 plot](src/task2.3_summary.png)
 
 The discrepancy is always below 100, it grows as the number of threads increases.
 
+![Task2.3 discrepancy](src/task2.3_discrepancy.png)
+![Task2.3 accuracy](src/task2.3_accuracy.png)
+
 ## 2.4. Lock-free time sampling with local log
+
+Source files
+- `Task4.java`
+
+Output files
+- `task2.4.out`
+
+Replicate the experiments from Task 2.3
+
+![2.4summary](src/task2.4_summary.png)
+![2.4discrepancy](src/task2.4_discrepancy.png)
+![2.4accuracy](src/task2.4_accuracy.png)
 
 ## 2.5. Lock-free time sampling with global Log
 
+Source files
+- `Task5.java`
+
+Output files
+- `task2.5.out`
+
+Replicate the experiments from Task 2.3
+
+![2.5summary](src/task2.5_summary.png)
+![2.5discrepancy](src/task2.5_discrepancy.png)
+![2.5accuracy](src/task2.5_accuracy.png)
+
+
 ## 2.6. PDC experiments
 
-## 2.7. Extra task: global log from scratch
+**Lock-free time sampling with local log**
+
+![2.4PDCsummary](src/task2.4_PDC_summary.png)
+![2.4PDCdiscrepancy](src/task2.4_PDC_discrepancy.png)
+![2.4PDCaccuracy](src/task2.4_PDC_accuracy.png)
+
+**Lock-free time sampling with global log**
+
+![2.5PDCsummary](src/task2.5_PDC_summary.png)
+![2.5PDCdiscrepancy](src/task2.5_PDC_discrepancy.png)
+![2.5PDCaccuracy](src/task2.5_PDC_accuracy.png)

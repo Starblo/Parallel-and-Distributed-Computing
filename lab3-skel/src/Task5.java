@@ -3,23 +3,21 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicMarkableReference;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class Task4<T extends Comparable<T>> implements LockFreeSet<T> {
+public class Task5<T extends Comparable<T>> implements LockFreeSet<T> {
     /* Number of levels */
     private static final int MAX_LEVEL = 16;
     private static final int MAX_THREADS = 48;
 
-    HashMap<Integer, LinkedList<Log.Entry>> map = new HashMap<Integer, LinkedList<Log.Entry>>();
+    private final ConcurrentLinkedQueue<Log.Entry> globalLog = new ConcurrentLinkedQueue<>();
 
     private final Node<T> head = new Node<T>();
     private final Node<T> tail = new Node<T>();
 
-    public Task4() {
+    public Task5() {
         for (int i = 0; i < head.next.length; i++) {
-            head.next[i] = new AtomicMarkableReference<Task4.Node<T>>(tail, false);
-        }
-        for (int i = 0; i < MAX_THREADS; i++){
-            map.put(i, new LinkedList<>());
+            head.next[i] = new AtomicMarkableReference<Task5.Node<T>>(tail, false);
         }
     }
 
@@ -243,24 +241,20 @@ public class Task4<T extends Comparable<T>> implements LockFreeSet<T> {
     private void recordRetAndEnqueue(Log.Entry entry, int threadId, boolean ret) {
         if (entry != null) {
             entry.ret = ret;
-            map.get(threadId).add(entry);
+            globalLog.add(entry);
         }
     }
 
 
     public Log.Entry[] getLog() {
-        ArrayList<Log.Entry> entries = new ArrayList<>();
-        map.values().forEach(entries::addAll);
-        return entries.toArray(new Log.Entry[0]);
+        return globalLog.toArray(new Log.Entry[0]);
     }
 
     public void reset() {
         for (int i = 0; i < head.next.length; i++) {
-            head.next[i] = new AtomicMarkableReference<Task4.Node<T>>(tail, false);
+            head.next[i] = new AtomicMarkableReference<Task5.Node<T>>(tail, false);
         }
-        for (int i = 0; i < MAX_THREADS; i++) {
-            map.get(i).clear();
-        }
+        globalLog.clear();
     }
 }
 

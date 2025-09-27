@@ -1,6 +1,30 @@
+#!/usr/bin/env bash
+
+# Do not run this script directly on PDC.
+
+# This stops the script when a command's exit code is non-zero (i.e., error).
+#SBATCH -A edu25.dd2443
+
+# The name of the script is myjob
+#SBATCH -J Sort
+
+# The partition
+#SBATCH -p shared
+
+# 5 hour wall clock time will be given to this job
+#SBATCH -t 05:00:00
+
+#SBATCH --output=task2.5_PDC_2.out    # Output file format: jobname_jobid.out
+
+# Number of MPI processes
+#SBATCH -n 1
+
+#SBATCH --nodes=1
+
+#SBATCH --cpus-per-task=64
+
 ml PDC java
 set -e
-exec > task2.4.out 2>&1
 
 # -----------------------------------------
 # java Main <T> <S> <D> <V> <A>:<R>:<C> <O> <W> <M>
@@ -14,16 +38,16 @@ exec > task2.4.out 2>&1
 # <M>  Number of measurements for the final statistics.
 # -----------------------------------------
 
-SET_VERSION=LocalLog      # <S>
-MAX_VALUE=10000         # <V>
-OPS_PER_THREAD=100000    # <O>
+SET_VERSION=GlobalLog      # <S>
+MAX_VALUE=100000         # <V>
+OPS_PER_THREAD=1000000   # <O>
 WARMUP_ROUNDS=3          # <W>
 MEASURE_ROUNDS=20         # <M>
 
 # Loop parameters (edit this block to select the matrix)
-DISTS="Uniform Normal"           # <D>
+DISTS="Normal"           # <D>
 MIXES="1:1:8 1:1:0"              # <A>:<R>:<C>
-THREADS_LIST="1 2 4 8"           # <T>
+THREADS_LIST="1 2 4 8 16 32 48"  # <T>
 
 # Build
 javac *.java

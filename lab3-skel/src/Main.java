@@ -85,9 +85,9 @@ public class Main {
                 case "Locked":
                         return new Task3();
                 case "LocalLog":
-                        // TODO: Add your own set
+                        return new Task4();
                 case "GlobalLog":
-                        // TODO: Add your own set
+                        return new Task5();
                 default: 
                         return null;
                 }
